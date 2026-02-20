@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paywall Remover</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>🔓 Paywall Remover</h1>
+
+    <form method="POST" class="search-container">
+        <input type="url" name="url" placeholder="Wklej link do artykułu..." value="{{ url or '' }}" required autofocus>
+        <button type="submit">Unlock</button>
+    </form>
+
+{% if wynik %}
+        <div class="result-box">
+            {% if "❌" in wynik or "Error" in wynik %}
+                <span class="error">{{ wynik }}</span>
+            {% else %}
+                {{ wynik | safe }} 
+            {% endif %}
+        </div>
+    {% endif %}
+
+</body>
+</html>
